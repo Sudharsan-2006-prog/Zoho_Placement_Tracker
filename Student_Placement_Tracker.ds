@@ -1,0 +1,2065 @@
+/*
+ * Author       : sudharsan2410735_ssn
+ * Generated on : 01-Mar-2026 20:09:03
+ * Version      : 1.0
+ */
+ application "Student Placement Tracker"
+ {
+ 	date format = "dd-MMM-yyyy"
+ 	time zone = "America/Los_Angeles"
+ 	time format = "24-hr"
+ 	forms
+	{
+		form applications
+		{
+			displayname = "Applications"
+			success message = "Application Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			student_name
+			(
+    			type = text
+				displayname = "Student Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			company
+			(
+				type = list	
+				displayname = "Company"
+				values  = companies.ID
+    			displayformat = [company_name]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			resume_upload
+			(
+    			type = textarea
+				displayname = "Resume Upload"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			application_date
+			(
+    			type = date
+				displayname = "Application Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			status
+			(
+				type = picklist
+				displayname = "Status"
+				values = {"Online Test","Selected","Rejected","Applied","Interview"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			notes
+			(
+    			type = textarea
+				displayname = "Notes"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			application_reference
+			(
+    			type = autonumber
+				displayname = "Application Reference"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Application Submitted","Application Reviewed","Application Rejected","Application On Hold","Interview Scheduled","Interview Conducted","Interview Rescheduled","Application Shortlisted","Offer Extended","Offer Accepted","Offer Declined","Onboarding Initiated","Onboarding Completed","Onboarding Delayed","Application Closed"}
+			}
+		}
+		form companies
+		{
+			displayname = "Companies"
+			success message = "Company Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			company_name
+			(
+    			type = text
+				displayname = "Company Name"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			role
+			(
+    			type = text
+				displayname = "Role"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			location
+			(
+    			type = text
+				displayname = "Location"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			package_stipend
+			(
+				displayname = "Package/Stipend"
+				type = USD
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			application_deadline
+			(
+    			type = date
+				displayname = "Application Deadline"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			contact_person
+			(
+    			type = text
+				displayname = "Contact Person"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			website
+			(
+    			type = url
+				displayname = "Website"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			industry
+			(
+    			type = text
+				displayname = "Industry"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			description
+			(
+    			type = textarea
+				displayname = "Description"
+				height = 100px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+		}
+		form interviews
+		{
+			displayname = "Interviews"
+			success message = "Interview Added Successfully"
+			Section
+			(
+				type = section
+	 			row = 1
+	 			column = 0   
+				width = medium
+			)
+			company
+			(
+				type = list	
+				displayname = "Company"
+				values  = companies.ID
+    			displayformat = [company_name]
+				allow new entries
+				[
+					displayname = "Add New"
+				]
+				sortorder = ascending
+				height = 13px
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			interview_date
+			(
+    			type = date
+				displayname = "Interview Date"
+				alloweddays = 0,1,2,3,4,5,6
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			round
+			(
+				type = picklist
+				displayname = "Round"
+				values = {"Aptitude","Technical","HR","Managerial"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			result
+			(
+				type = picklist
+				displayname = "Result"
+				values = {"Passed","Failed","Pending"}
+				others option = true
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			interview_reference
+			(
+    			type = autonumber
+				displayname = "Interview Reference"
+				start index = 1
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+			scheduled_by
+			(
+    			type = text
+				displayname = "Scheduled By"
+	 			row = 1
+	 			column = 1   
+				width = medium
+			)
+	
+			actions
+			{
+				on add
+				{
+					submit
+					(
+   						type = submit
+   						displayname = "Submit"
+					)
+					reset
+					(
+   						type = reset
+   						displayname = "Reset"
+					)
+				}
+				on edit
+				{
+					update
+					(
+   						type = submit
+   						displayname = "Update"
+					)
+					cancel
+					(
+   						type = cancel
+   						displayname = "Cancel"
+					)
+				}
+			}
+			blueprint components
+			{
+				stages = {"Interview Scheduled","Interview Conducted","Interview Rescheduled","Interview Cancelled","Interview Results Pending","Interview Result Confirmed","Interview Re-evaluation Required","Candidate Offer Extended","Candidate Rejected","Interview Archived","Offer Accepted","Offer Declined","Offer Withdrawn","Onboarding Initiated","Onboarding Completed","Onboarding Delayed","Employee Active","Onboarding Cancelled","Employee Terminated","Employee On Leave","Employee Record Archived"}
+			}
+		}
+	}
+	reports
+	{
+		list applications_Report
+		{
+			displayName = "All Applications"
+			show all rows from applications    
+			(
+				student_name as "Student Name"
+				company as "Company"
+				resume_upload as "Resume Upload"
+				application_date as "Application Date"
+				status as "Status"
+				notes as "Notes"
+				application_reference as "Application Reference"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (status == "Applied")
+				fields = [status]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (status == "Interview")
+				fields = [status]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (status == "Rejected")
+				fields = [status]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban applications_by_status
+		{
+			displayName = "Statuses"
+			show all rows from applications    
+			(
+				student_name as "Student Name"
+				company as "Company"
+				resume_upload as "Resume Upload"
+				application_date as "Application Date"
+				status as "Status"
+				notes as "Notes"
+				application_reference as "Application Reference"
+			)
+			options
+			(
+	 			display field = status
+	 		)
+		}
+		list companies_Report
+		{
+			displayName = "All Companies"
+			show all rows from companies    
+			(
+				company_name as "Company Name"
+				role as "Role"
+				location as "Location"
+				package_stipend as "Package/Stipend"
+				(
+					display = total,average,min,max	
+				)
+				application_deadline as "Application Deadline"
+				contact_person as "Contact Person"
+				website as "Website"
+				industry as "Industry"
+				description as "Description"
+			)
+		}
+		list interviews_Report
+		{
+			displayName = "All Interviews"
+			show all rows from interviews    
+			(
+				company as "Company"
+				interview_date as "Interview Date"
+				round as "Round"
+				result as "Result"
+				interview_reference as "Interview Reference"
+				scheduled_by as "Scheduled By"
+			)
+			conditional formatting
+			(
+				"New Formatting1"
+				{
+				condition = (round == "Aptitude")
+				fields = [round]
+				format = "color:#ffffff;background-color:#765f89;"
+				}
+				"New Formatting2"
+				{
+				condition = (round == "Managerial")
+				fields = [round]
+				format = "color:#000000;background-color:#1bbc9b;"
+				}
+				"New Formatting3"
+				{
+				condition = (round == "Technical")
+				fields = [round]
+				format = "color:#ffffff;background-color:#e84c3d;"
+				}
+			)
+		}
+		kanban interviews_by_round
+		{
+			displayName = "Rounds"
+			show all rows from interviews    
+			(
+				company as "Company"
+				interview_date as "Interview Date"
+				round as "Round"
+				result as "Result"
+				interview_reference as "Interview Reference"
+				scheduled_by as "Scheduled By"
+			)
+			options
+			(
+	 			display field = round
+	 		)
+		}
+	}
+	pages
+	{
+		page DashBoard
+		{
+			displayname = "Dashboard"
+			Content="<zml    \t\t\n\t\t\n\t\t\n\t\t\n\t\t\n>\n\t<layout>\n\t<row>\n\t<column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 1'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#F97164'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '64%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '0px' \n\tmarginTop = '8px'\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tdecimalPlaces = '2'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.companies.package_stipend.sum'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '0px'\n\tmarginRight = '8px' \n\tmarginTop = '0px'\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Package/Stipend'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '36%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#C75A50'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'business-percentage-39'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#EEA131'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '65%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.applications.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Applications'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '35%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#BE8127'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'travel-world'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#00CFA9'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '65%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'transparent'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.companies.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Companies'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '35%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#0BA385'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'travel-world'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='26%'\n   \t>\n\t<panel elementName='Panel 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#3E99DE'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpaddingTop = '20px'\n\tpaddingLeft = '20px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '65%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\tpadding = '5px'\n\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '24px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.interviews.ID.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tcolor = '#FFFFFF'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total Interviews'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '35%'\n\t\thAlign = 'right'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '10px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#0E78C9'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'travel-world'\n\tsize = '22px'\n\tcornerRadius = '10px'\n\ticonType = 'outline'\n/>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<panel elementName='Grouped_Panel 1'\n \n\t\n\ttitle = 'Results'\n\t\n\t\ttitleSize = '15px'\n            boldTitle = 'true'\n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '0px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '100%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#F97164'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'business-money-11'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginBottom = '0px'\n\tcolor = '#C75A50'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'result == &quot;Passed&quot;'\n\t  value = 'thisapp.interviews.result.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Passed'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = '#FFFFFF'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#EEA131'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'design-2-cursor-not-allowed'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tcolor = '#BE8127'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'result == &quot;Failed&quot;'\n\t  value = 'thisapp.interviews.result.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginTop = '0px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Failed'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#00CFA9'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-hourglass'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tcolor = '#0BA385'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t\tcriteria = 'result == &quot;Pending&quot;'\n\t  value = 'thisapp.interviews.result.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginTop = '0px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Pending'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc><pc \n\t\tpadding = '20px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\twidth = '25%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginBottom = '0px'\n\tmarginTop = '0px'\n\n\tcolor = '#FFFFFF'\n\tbgColor = '#3E99DE'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'travel-world'\n\tsize = '22px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\tpaddingLeft = '10px'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\t\thAlign = 'left'\n>\n\t<pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tcolor = '#0E78C9'\n\tsize = '28px'\n\tbold = 'true' \n\ttype = 'Form Data'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\tdisplayType = 'actual'\n\tthousandsSeperator = 'LOCALE'\n\tdecimalSeperator = 'DOT'\n\tnumberScale = 'none'\n\n\n\n\n\t  value = 'thisapp.interviews.result.count'\n>\n</text>\n\n</pc>\n</pr><pr \n\t>\n\t<pc \n\t\n>\n\t<text \n\n\tmarginLeft = '10px'\n\tmarginRight = '0px' \n\tmarginTop = '0px'\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Total'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel_Button 1'\n \n\t\n\ttitle = 'Quick Links'\n\t\n\t\ttitleSize = '15px'\n            boldTitle = 'true'\n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'applications'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#595959'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Applications'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='27%'\n   \t>\n\t<panel elementName='Panel_Button 2'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'companies'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#3F3F3F'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Companies'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='25%'\n   \t>\n\t<panel elementName='Panel_Button 3'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenForm'\n\t\tcomponentLinkName = 'interviews'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#3F3F3F'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Add New Interviews'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column><column\n   \t\t width='24%'\n   \t>\n\t<panel elementName='Panel_Button 4'\n \n >\n\t<pr \n\t\t\twidth='fill'\n\t\theight='fill'\n>\n\t<pc \n\t\tbgColor = '#CB6711'\n\n\t\twidth = '2%'\n\t\thAlign = 'left'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t\n</pc>\n</pr>\n</pc><pc \n\t\tpaddingTop = '10px'\n\tpaddingLeft = '0px'\n\tpaddingRight = '0px'\n\tpaddingBottom = '10px'\n\tbgColor = '#FFFFFF'\n\n    action = 'OpenReport'\n\t\tcomponentLinkName = 'applications_Report'\n\t\ttarget = 'new-window'\n\t\twidth = '98%'\n\t\thAlign = 'center'\n\t\tvAlign = 'middle'\n>\n\t<pr \n\t\t\twidth='auto'\n\t\theight='auto'\n>\n\t<pc \n\t\n>\n\t<image  \n\t\tmarginLeft = '0px'\n\tmarginRight = '6px' \n\n\tcolor = '#3F3F3F'\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\twidth = '40px'\n\theight = '40px'\n\ttype = 'icon'\n\tvalue = 'ui-2-square-add-08'\n\tsize = '14px'\n\tcornerRadius = '20px'\n\ticonType = 'outline'\n/>\n</pc><pc \n\t\n>\n\t<text \n\n\tcolor = '#3F3F3F'\n\tsize = '14px'\n\ttype = 'Text'\n\n\tbgColor = 'rgba(0, 0, 0, 0)'\n\n\n\n\n\n\n\t  value = 'Show All Applications'\n>\n</text>\n\n</pc>\n</pr>\n</pc>\n</pr>\n</panel>\n</column>\n</row><row>\n\t<column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 1'\n\n\t\n\ttitle = 'Distribution by Status'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Status'\n\tytitle = 'Count of Status'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = '#f37d16'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'applications'\n\txfield = 'status'\n\tyfields = 'count:status'\n\t\tDelugeCriteria = 'status is not null &amp;&amp; status != &quot;&quot;'\n/>\n\n</column><column\n   \t\t width='50%'\n   \t>\n\t<chart \n\telementName='Chart 2'\n\n\t\n\ttitle = 'Location by Package/Stipend'\n\t\n\t\ttitleSize = '16px'\n\ttype = 'Bar'\n\txtitle = 'Location'\n\tytitle = 'Package/Stipend'\n\tbgColor = 'rgb(255, 255, 255)'\n\ttheme = 'theme1'\n\tlegendPos = 'none'\n\theightType = 'auto'\n\theightValue = '300px'\n\tappLinkName = 'thisapp'\n\tformLinkName = 'companies'\n\txfield = 'location'\n\tyfields = 'value:package_stipend'\n\t\tDelugeCriteria = 'location is not null &amp;&amp; location != &quot;&quot;'\n/>\n\n</column>\n</row><row>\n\t<column\n   \t\t width='100%'\n   \t>\n\t<report \n\telementName='Report'\n\n\t\tappLinkName = 'thisapp'\n\t\tlinkName = 'applications_Report'\n\t\n\t\tiszreport = 'false'\n\t\t\t\t\tzc_AddRec = 'false'\n\t\t\t\t\tzc_EditRec = 'false'\n\t\t\t\t\tzc_Print = 'false'\n\t\t\t\t\tzc_Export = 'false'\n\t\t\t\t\tzc_DelRec = 'false'\n\t\t\t\t\tzc_DuplRec = 'false'\n\t\t\t\t\tzc_Search = 'false'\n\t\t\t\t\tzc_EditBulkRec = 'false'\n\t\t\t\t\tzc_BulkDelete = 'false'\n\t\t\t\t\tzc_BulkDuplicate = 'false'\n\theightType = 'auto'\n\theightValue = '700'\n\n/>\n</column>\n</row>\n</layout>\n</zml>"
+		}
+	}
+
+
+		workflow
+		{
+
+
+
+
+		blueprint
+		{
+    			application_tracking_process as "Application Tracking Process"
+    			{
+        			type = Blueprint
+        			form = applications
+        			start
+        			{
+            			start stage = "Application Submitted"
+        			}
+        			stages
+        			{
+           			"Application Submitted"
+           			{
+           			}
+           			"Application Reviewed"
+           			{
+           			}
+           			"Application Rejected"
+           			{
+           			}
+           			"Application On Hold"
+           			{
+           			}
+           			"Interview Scheduled"
+           			{
+           			}
+           			"Interview Conducted"
+           			{
+           			}
+           			"Interview Rescheduled"
+           			{
+           			}
+           			"Application Shortlisted"
+           			{
+           			}
+           			"Offer Extended"
+           			{
+           			}
+           			"Offer Accepted"
+           			{
+           			}
+           			"Offer Declined"
+           			{
+           			}
+           			"Onboarding Initiated"
+           			{
+           			}
+           			"Onboarding Completed"
+           			{
+           			}
+           			"Onboarding Delayed"
+           			{
+           			}
+           			"Application Closed"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				accept_offer as "Accept Offer"
+    				{
+         				type = normal
+         				from stage = "Offer Extended"
+         				to stage = "Offer Accepted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				close_application as "Close Application"
+    				{
+         				type = normal
+         				from stage = "Onboarding Completed"
+         				to stage = "Application Closed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_onboarding as "Complete Onboarding"
+    				{
+         				type = normal
+         				from stage = "Onboarding Initiated"
+         				to stage = "Onboarding Completed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				conduct_interview as "Conduct Interview"
+    				{
+         				type = normal
+         				from stage = "Interview Scheduled"
+         				to stage = "Interview Conducted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				decline_offer as "Decline Offer"
+    				{
+         				type = normal
+         				from stage = "Offer Extended"
+         				to stage = "Offer Declined"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				delay_onboarding as "Delay Onboarding"
+    				{
+         				type = normal
+         				from stage = "Onboarding Initiated"
+         				to stage = "Onboarding Delayed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				extend_offer as "Extend Job Offer"
+    				{
+         				type = normal
+         				from stage = "Application Shortlisted"
+         				to stage = "Offer Extended"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				hold_application as "Place Application On Hold"
+    				{
+         				type = normal
+         				from stage = "Application Submitted"
+         				to stage = "Application On Hold"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				initiate_onboarding as "Begin Onboarding Process"
+    				{
+         				type = normal
+         				from stage = "Offer Accepted"
+         				to stage = "Onboarding Initiated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reject_application as "Reject Application"
+    				{
+         				type = normal
+         				from stage = "Application Submitted"
+         				to stage = "Application Rejected"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reschedule_interview as "Reschedule Interview"
+    				{
+         				type = normal
+         				from stage = "Interview Scheduled"
+         				to stage = "Interview Rescheduled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_review as "Resume Review"
+    				{
+         				type = normal
+         				from stage = "Application On Hold"
+         				to stage = "Application Reviewed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				review_application as "Review Application"
+    				{
+         				type = normal
+         				from stage = "Application Submitted"
+         				to stage = "Application Reviewed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				schedule_interview as "Schedule Interview"
+    				{
+         				type = normal
+         				from stage = "Application Reviewed"
+         				to stage = "Interview Scheduled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				shortlist_candidate as "Shortlist Candidate"
+    				{
+         				type = normal
+         				from stage = "Interview Conducted"
+         				to stage = "Application Shortlisted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+    			interview_scheduling_process as "Interview Scheduling Process"
+    			{
+        			type = Blueprint
+        			form = interviews
+        			start
+        			{
+            			start stage = "Interview Scheduled"
+        			}
+        			stages
+        			{
+           			"Interview Scheduled"
+           			{
+           			}
+           			"Interview Conducted"
+           			{
+           			}
+           			"Interview Rescheduled"
+           			{
+           			}
+           			"Interview Cancelled"
+           			{
+           			}
+           			"Interview Results Pending"
+           			{
+           			}
+           			"Interview Result Confirmed"
+           			{
+           			}
+           			"Interview Re-evaluation Required"
+           			{
+           			}
+           			"Candidate Offer Extended"
+           			{
+           			}
+           			"Candidate Rejected"
+           			{
+           			}
+           			"Interview Archived"
+           			{
+           			}
+           			"Offer Accepted"
+           			{
+           			}
+           			"Offer Declined"
+           			{
+           			}
+           			"Offer Withdrawn"
+           			{
+           			}
+           			"Onboarding Initiated"
+           			{
+           			}
+           			"Onboarding Completed"
+           			{
+           			}
+           			"Onboarding Delayed"
+           			{
+           			}
+           			"Employee Active"
+           			{
+           			}
+           			"Onboarding Cancelled"
+           			{
+           			}
+           			"Employee Terminated"
+           			{
+           			}
+           			"Employee On Leave"
+           			{
+           			}
+           			"Employee Record Archived"
+           			{
+           			}
+        			}
+        			transitions
+        			{
+    				accept_offer as "Accept Job Offer"
+    				{
+         				type = normal
+         				from stage = "Candidate Offer Extended"
+         				to stage = "Offer Accepted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_employee as "Archive Employee Record"
+    				{
+         				type = normal
+         				from stage = "Employee Terminated"
+         				to stage = "Employee Record Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				archive_interview as "Archive Interview Record"
+    				{
+         				type = normal
+         				from stage = "Interview Result Confirmed"
+         				to stage = "Interview Archived"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_interview as "Cancel Interview"
+    				{
+         				type = normal
+         				from stage = "Interview Scheduled"
+         				to stage = "Interview Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				cancel_onboarding as "Cancel Onboarding"
+    				{
+         				type = normal
+         				from stage = "Onboarding Delayed"
+         				to stage = "Onboarding Cancelled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				complete_onboarding as "Complete Onboarding Process"
+    				{
+         				type = normal
+         				from stage = "Onboarding Initiated"
+         				to stage = "Onboarding Completed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				conduct_interview as "Conduct Interview"
+    				{
+         				type = normal
+         				from stage = "Interview Scheduled"
+         				to stage = "Interview Conducted"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				confirm_result as "Confirm Interview Outcome"
+    				{
+         				type = normal
+         				from stage = "Interview Results Pending"
+         				to stage = "Interview Result Confirmed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				decline_offer as "Decline Job Offer"
+    				{
+         				type = normal
+         				from stage = "Candidate Offer Extended"
+         				to stage = "Offer Declined"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				delay_onboarding as "Delay Onboarding"
+    				{
+         				type = normal
+         				from stage = "Onboarding Initiated"
+         				to stage = "Onboarding Delayed"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				extend_offer as "Extend Job Offer"
+    				{
+         				type = normal
+         				from stage = "Interview Result Confirmed"
+         				to stage = "Candidate Offer Extended"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				initiate_onboarding as "Begin Onboarding Process"
+    				{
+         				type = normal
+         				from stage = "Offer Accepted"
+         				to stage = "Onboarding Initiated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				mark_active as "Mark Employee as Active"
+    				{
+         				type = normal
+         				from stage = "Onboarding Completed"
+         				to stage = "Employee Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				place_on_leave as "Place Employee on Leave"
+    				{
+         				type = normal
+         				from stage = "Employee Active"
+         				to stage = "Employee On Leave"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reject_candidate as "Send Rejection Notification"
+    				{
+         				type = normal
+         				from stage = "Interview Result Confirmed"
+         				to stage = "Candidate Rejected"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				request_reevaluation as "Request Re-evaluation"
+    				{
+         				type = normal
+         				from stage = "Interview Results Pending"
+         				to stage = "Interview Re-evaluation Required"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				reschedule_interview as "Reschedule Interview"
+    				{
+         				type = normal
+         				from stage = "Interview Scheduled"
+         				to stage = "Interview Rescheduled"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_employment as "Resume Employment"
+    				{
+         				type = normal
+         				from stage = "Employee On Leave"
+         				to stage = "Employee Active"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				resume_onboarding as "Resume Onboarding Process"
+    				{
+         				type = normal
+         				from stage = "Onboarding Delayed"
+         				to stage = "Onboarding Initiated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				submit_feedback as "Submit Interview Feedback"
+    				{
+         				type = normal
+         				from stage = "Interview Conducted"
+         				to stage = "Interview Results Pending"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				terminate_employee as "Terminate Employment"
+    				{
+         				type = normal
+         				from stage = "Employee Active"
+         				to stage = "Employee Terminated"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+    				withdraw_offer as "Withdraw Job Offer"
+    				{
+         				type = normal
+         				from stage = "Candidate Offer Extended"
+         				to stage = "Offer Withdrawn"
+         				before
+         				{
+         				}
+         				after
+         				{
+         				}
+  				}
+        			}
+    			}
+		}
+
+
+	}
+	share_settings
+	{
+			"Read"
+			{
+				name = "Read"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have read permission for all components\n"
+			}
+			"Write"
+			{
+				name = "Write"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have write permission for all components\n"
+			}
+			"Administrator"
+			{
+				name = "Administrator"
+				type = Users_Permissions
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This profile will have all the permissions.\n"
+			}
+			"Career Counselor"
+			{
+				name = "Career Counselor"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Guide students through job and internship application processes \n"
+				ModulePermissions
+				{
+					companies
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							companies_Report={"View"}
+						}
+					}
+					applications
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							applications_by_status={"View","Edit"}
+							applications_Report={"View","Edit"}
+						}
+					}
+					interviews
+					{
+						enabled= Viewall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							interviews_Report={"View","Edit"}
+							interviews_by_round={"View","Edit"}
+						}
+					}
+				}
+			}
+			"Developer"
+			{
+				name = "Developer"
+				type = Developer
+				permissions = {Chat:false, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Developer Profile\n"
+			}
+			"Data Analyst"
+			{
+				name = "Data Analyst"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Generate reports on application trends and success rates \n"
+				ModulePermissions
+				{
+					companies
+					{
+						enabled= Viewall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							companies_Report={"View"}
+						}
+					}
+					applications
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							applications_by_status={"View","Edit","Delete"}
+							applications_Report={"View","Edit","Delete"}
+						}
+					}
+					interviews
+					{
+						enabled= Viewall,Modifyall,Export 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							interviews_Report={"View","Edit","Delete"}
+							interviews_by_round={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Admin Officer"
+			{
+				name = "Admin Officer"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Maintain and update company and application records \n"
+				ModulePermissions
+				{
+					companies
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							companies_Report={"View","Edit","Delete"}
+						}
+					}
+					applications
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							applications_by_status={"View","Edit","Delete"}
+							applications_Report={"View","Edit","Delete"}
+						}
+					}
+					interviews
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							interviews_Report={"View","Edit","Delete"}
+							interviews_by_round={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Placement Coordinator"
+			{
+				name = "Placement Coordinator"
+				type = Users_Permissions
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Manage company partnerships and update company profiles \n"
+				ModulePermissions
+				{
+					companies
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							companies_Report={"View","Edit","Delete"}
+						}
+					}
+					applications
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							applications_by_status={"View","Edit","Delete"}
+							applications_Report={"View","Edit","Delete"}
+						}
+					}
+					interviews
+					{
+						enabled= Viewall,Modifyall 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							interviews_Report={"View","Edit","Delete"}
+							interviews_by_round={"View","Edit","Delete"}
+						}
+					}
+				}
+			}
+			"Student"
+			{
+				name = "Student"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "Submit job and internship applications with resume uploads \n"
+				ModulePermissions
+				{
+					companies
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							companies_Report={"View"}
+						}
+					}
+					applications
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							applications_by_status={"View","Edit"}
+							applications_Report={"View","Edit"}
+						}
+					}
+					interviews
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							interviews_Report={"View","Edit"}
+							interviews_by_round={"View","Edit"}
+						}
+					}
+				}
+			}
+			"Customer"
+			{
+				name = "Customer"
+				type = Customer_Portal
+				permissions = {Chat:true, Predefined:true, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "This is the default profile having only add and view permission.\n"
+			}
+			"Company Representative"
+			{
+				name = "Company Representative"
+				type = Customer_Portal
+				permissions = {Chat:false, Predefined:false, ApiAccess:true, PIIAccess:true, ePHIAccess:true}
+				description = "List job and internship opportunities with key details \n"
+				ModulePermissions
+				{
+					companies
+					{
+						enabled= Create,Viewall,Modifyall,Import,Export,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							companies_Report={"View","Edit","Delete"}
+						}
+					}
+					applications
+					{
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							applications_by_status={"View","Edit"}
+							applications_Report={"View","Edit"}
+						}
+					}
+					interviews
+					{
+						enabled= Create,Tab 
+						allFieldsVisible= true 
+						ReportPermissions
+						{
+							interviews_Report={"View","Edit"}
+							interviews_by_round={"View","Edit"}
+						}
+					}
+				}
+			}
+			roles
+			{
+				"CEO"
+				{
+					description = "User belonging to this role can access data of all other users."
+				}
+			}
+	}
+
+
+	web
+	{
+		forms
+		{
+			form applications
+			{
+				label placement = left
+			}
+			form companies
+			{
+				label placement = left
+			}
+			form interviews
+			{
+				label placement = left
+			}
+		}
+		reports
+		{
+			report applications_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								student_name as "Student Name"
+								company as "Company"
+								resume_upload as "Resume Upload"
+								application_date as "Application Date"
+								status as "Status"
+								notes as "Notes"
+								application_reference as "Application Reference"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								student_name as "Student Name"
+								company as "Company"
+								resume_upload as "Resume Upload"
+								application_date as "Application Date"
+								status as "Status"
+								notes as "Notes"
+								application_reference as "Application Reference"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Company"
+		     				related field = company
+							fields
+							(
+								company_name as "Company Name"
+								role as "Role"
+								location as "Location"
+								package_stipend as "Package/Stipend"
+								application_deadline as "Application Deadline"
+								contact_person as "Contact Person"
+								website as "Website"
+								industry as "Industry"
+								description as "Description"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report applications_by_status
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								student_name as "Student Name"
+								company as "Company"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								student_name as "Student Name"
+								company as "Company"
+								resume_upload as "Resume Upload"
+								application_date as "Application Date"
+								status as "Status"
+								notes as "Notes"
+								application_reference as "Application Reference"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report companies_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								company_name as "Company Name"
+								role as "Role"
+								location as "Location"
+								package_stipend as "Package/Stipend"
+								application_deadline as "Application Deadline"
+								contact_person as "Contact Person"
+								website as "Website"
+								industry as "Industry"
+								description as "Description"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								company_name as "Company Name"
+								role as "Role"
+								location as "Location"
+								package_stipend as "Package/Stipend"
+								application_deadline as "Application Deadline"
+								contact_person as "Contact Person"
+								website as "Website"
+								industry as "Industry"
+								description as "Description"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report interviews_Report
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = -1
+						datablock1
+						(
+							layout type = -1
+							fields
+							(
+								company as "Company"
+								interview_date as "Interview Date"
+								round as "Round"
+								result as "Result"
+								interview_reference as "Interview Reference"
+								scheduled_by as "Scheduled By"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+		     				title = "Overview"
+							fields
+							(
+								company as "Company"
+								interview_date as "Interview Date"
+								round as "Round"
+								result as "Result"
+								interview_reference as "Interview Reference"
+								scheduled_by as "Scheduled By"
+							)
+						)
+						datablock2
+						(
+							layout type = -2
+		     				title = "Company"
+		     				related field = company
+							fields
+							(
+								company_name as "Company Name"
+								role as "Role"
+								location as "Location"
+								package_stipend as "Package/Stipend"
+								application_deadline as "Application Deadline"
+								contact_person as "Contact Person"
+								website as "Website"
+								industry as "Industry"
+								description as "Description"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+			report interviews_by_round
+			{
+				quickview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = 1
+							fields
+							(
+								scheduled_by as "Scheduled By"
+								company as "Company"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    		 				Add 
+    		 				Import 
+    		 				Export 
+    	 				)
+						record
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+    					)
+    				)
+    				action
+    				(
+						on click
+						(
+							View Record   	   
+    					)
+						on right click
+						(
+							Edit   	   
+							Duplicate   	   
+							Delete   	   
+							Print   	   
+							View Record   	   
+    					)
+     				)
+				)
+
+				detailview
+				(
+					layout
+					(
+		 				type = 1
+						datablock1
+						(
+							layout type = -2
+							fields
+							(
+								company as "Company"
+								interview_date as "Interview Date"
+								round as "Round"
+								result as "Result"
+								interview_reference as "Interview Reference"
+								scheduled_by as "Scheduled By"
+							)
+						)
+					)
+					menu
+    				(
+    	 				header
+    	 				(
+    		 				Edit 
+    		 				Duplicate 
+    		 				Delete 
+    		 				Print 
+    	 				)
+    				)
+				)
+			}
+		}
+		menu
+		{
+			space Space
+			{
+				displayname = "Space"
+				icon = "objects-spaceship"
+
+				section Section_1
+				{
+					displayname = "Dashboard"
+					icon = "ui-1-dashboard-half"
+					page DashBoard
+					{
+						icon = "ui-1-dashboard-half"
+					}
+				}
+				section Section_2
+				{
+					displayname = "Applications"
+					icon = "tech-2-l-settings"
+					form  applications
+					{
+						icon = "ui-1-bold-add"
+					}
+					report applications_Report
+					{
+						icon = "travel-world"
+					}
+					report applications_by_status
+					{
+						icon = "design-2-selection"
+					}
+				}
+				section Section_3
+				{
+					displayname = "Companies"
+					icon = "business-factory"
+					form  companies
+					{
+						icon = "ui-1-bold-add"
+					}
+					report companies_Report
+					{
+						icon = "travel-world"
+					}
+				}
+				section Section_4
+				{
+					displayname = "Interviews"
+					icon = "media-1-video-66"
+					form  interviews
+					{
+						icon = "ui-1-bold-add"
+					}
+					report interviews_Report
+					{
+						icon = "travel-world"
+					}
+					report interviews_by_round
+					{
+						icon = "design-bullet-list-67"
+					}
+				}
+				section ZC_App_Preferences
+				{
+					displayname = "App Preferences"
+					icon = "design-app"
+					systemcomponent
+					{
+						type = localization
+						displayname = "Language Selection"
+						icon = "education-language"
+					}
+					systemcomponent
+					{
+						type = connection
+						displayname = "Integrations"
+						icon = "tech-2-connection"
+					}
+				}
+				section ZC_Approvals
+				{
+					displayname = "Approvals"
+					icon = "ui-2-hourglass"
+					systemcomponent
+					{
+						type = approval
+						approval status = pending
+						displayname = "Pending Tasks"
+						icon = "ui-2-hourglass"
+					}
+					systemcomponent
+					{
+						type = approval
+						approval status = completed
+						displayname = "Completed Tasks"
+						icon = "design-todo"
+					}
+				}
+				section SharedAnalytics_Section
+				{
+					type = shared_user_report_section
+					displayname = "Reports"
+					icon = "business-chart-bar-33"
+				}
+			}
+			preference
+			{
+				icon
+				{
+					style = solid
+					show = {space,section,component}
+				}
+			}
+		}
+		customize
+		{
+			new theme = 6
+			font = "rubik"
+			color options
+			{
+				color = "4"
+			}
+			logo
+			{
+				preference = "none"
+				placement = "left"
+			}
+		}
+	}
+	phone
+	{
+		forms
+		{
+			form applications
+			{
+				label placement = auto
+			}
+			form companies
+			{
+				label placement = auto
+			}
+			form interviews
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = yellow
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	tablet
+	{
+		forms
+		{
+			form applications
+			{
+				label placement = auto
+			}
+			form companies
+			{
+				label placement = auto
+			}
+			form interviews
+			{
+				label placement = auto
+			}
+		}
+		customize
+		{
+			layout = slidingpane
+			font = "default"
+			style = "3"
+			color options
+			{
+				color = yellow
+			}
+			logo
+			{
+				preference = "none"
+			}
+		}
+	}
+	translation
+{
+{"Language_Settings":{"LANGAGUE_WITH_LOGIN":"browser"}}
+}
+}
